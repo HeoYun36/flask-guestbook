@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 
 messages = [
     "Yun: Hello there!",
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello, Flask!'
+    return render_template("guestbook.html", messages=messages)
 
 @app.route('/guestbook')
 def guestbook():
@@ -22,13 +22,7 @@ def write():
         msg = request.form['message']
         messages.append(f"{name}: {msg}")
         return redirect('/guestbook')
-    return '''
-    <form method="post">
-        Name: <input name="name"><br>
-        Message: <input name="message"><br>
-        <input type="submit" value="Submit">
-    </form>
-    '''
+    return render_template("form.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

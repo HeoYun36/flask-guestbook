@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guestbook</title>
+</head>
+<body>
+    <h1>📖 Guestbook</h1>
+    {% for msg in messages %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+    <hr>
+    <a href="/write">Leave a message</a>
+</body>
+</html>
